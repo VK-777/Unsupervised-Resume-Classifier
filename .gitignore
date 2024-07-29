@@ -1,0 +1,13 @@
+# Ignore sensitive files
+keys.txt
+database.config
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore IDE configuration files
+.idea/
+
+# Ignore environment files
+.env
