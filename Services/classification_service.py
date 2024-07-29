@@ -1,10 +1,9 @@
 import json
-import re
-import spacy
 import pandas as pd
 
 from Constants.constants import JOB_SKILLS_FILEPATH, JOB_TITLES_FILEPATH
 from Logging.logger import apply_log_around
+from Utils.job_title_extractor_utils import JobTitleExtractor
 from Utils.text_preprocessor_utils import TextPreprocessor
 from Utils.data_processor_utils import DataProcessor
 from Utils.job_titles_processor_utils import JobTitleProcessor
@@ -17,32 +16,6 @@ job_skills_filepath = JOB_SKILLS_FILEPATH
 # Load job skills JSON
 with open(JOB_TITLES_FILEPATH, 'r') as f:
     job_titles = json.load(f)
-
-nlp = spacy.load('en_core_web_sm')
-
-
-class JobTitleExtractor:
-    def __init__(self):
-        self.nlp = nlp
-
-    def extract_job_title(self, text):
-        doc = self.nlp(text)
-        for ent in doc.ents:
-            if ent.label_ == "WORK_OF_ART":
-                return ent.text
-
-        regex_patterns = [
-            r'\b(?:[a-z]+\s){0,2}(?:engineer|developer|lead|manager|administrator|consultant|technician|scientist'
-            r'|analyst|coordinator|director|specialist|officer|architect|strategist|executive|advisor|designer'
-            r'|programmer|supervisor|trainer|planner|controller|assistant|operator|agent|representative|clerk'
-            r'|inspector|instructor|apps developer|attendant)\b',
-        ]
-
-        for pattern in regex_patterns:
-            match = re.search(pattern, text)
-            if match:
-                return match.group(0).title()
-        return "Unknown"
 
 
 @apply_log_around
