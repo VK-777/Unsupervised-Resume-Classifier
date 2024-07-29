@@ -42,15 +42,15 @@ The Unsupervised Resume Classifier is a project that classifies and extracts job
   ```
 2. **API Endpoints**:
   - GET/classify: Classify resumes and match with job roles.
-  - Request Body: JSON containing resume details and candidate skills.
-  - Response: Classification results and matched job roles.
+  - GET/classify_candidate/{id}: Classifies particular candidate whose id is mentioned.
+  - GET/shutdown: Shutdowns the server gracefully after all tasks have been successfully executed.
 
 3. **Database**:
   - Ensure PostgreSQL is running and configured as specified in Constants/constants.py.
   - The application reads from and writes to the database.
 
 ## Example
-To classify a resume, send a GET request to the /classify endpoint with the resume data. The API will return the classification results based on the provided job roles and skills.
+To classify a resume, send a GET request to the /classify endpoint with the resume data. The API will update your database with the classification results based on the provided job roles and skills.
 
 ## Project Files
   - job_skills.json: Contains job titles and required skills.
