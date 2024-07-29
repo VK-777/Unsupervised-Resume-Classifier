@@ -3947,3 +3947,4 @@
 2024-07-29 10:21:22,240 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_2 with parameters {}'
 2024-07-29 10:21:25,155 - INFO - Entering method 'Services.filter_service.AIfilter  with parameters {}'
 2024-07-29 10:22:58,264 - INFO - Exiting method 'Services.filter_service.AIfilter with parameters {}'
+2024-07-29 10:22:58,264 - INFO - Exiting method 'Services.classification_service.classify_resume with parameters {}'
