@@ -5,17 +5,18 @@ The Unsupervised Resume Classifier is a project that classifies and extracts job
 
 ## Features
 - Resume Classification: Classifies resumes based on job titles and skill sets.
+- Regex Identification: Identifies certain patterns to extract job roles. 
 - Skill Matching: Matches candidate skills with predefined job roles.
-- Clustering: Uses unsupervised learning techniques for job role classification.
+- LLM Application: Prompts gemini api to label unclassified candidates.
 - Customizable: Allows integration of new job roles and skills through configuration files.
 
 ## Project Structure
-- Constants/: Contains configuration constants and settings.
-- Controller/: Manages API endpoints and application logic.
-- Daos/: Handles database interactions and data access.
-- Logging/: Provides logging functionalities.
-- Services/: Implements core classification and filtering services.
-- Utils/: Contains utility functions for data and text processing.
+- Constants/ : Contains configuration constants and settings.
+- Controller/ : Manages API endpoints and application logic.
+- Daos/ : Handles database interactions and data access.
+- Logging/ : Provides logging functionalities.
+- Services/ : Implements core classification and filtering services.
+- Utils/ : Contains utility functions for data and text processing.
 
 ## Installation
 
