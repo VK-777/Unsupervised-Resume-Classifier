@@ -1,0 +1,682 @@
+[
+    {
+        "job_title": "React Developer",
+        "description": "A React Developer specializes in building web applications using React.js framework.",
+        "required_skills": ["React.js", "Redux", "JavaScript", "HTML", "CSS"],
+        "preferred_skills": [],
+        "related_job_titles": ["Frontend Developer", "UI Developer"]
+    },
+    {
+        "job_title": "Angular Developer",
+        "description": "An Angular Developer focuses on developing client-side applications using Angular framework.",
+        "required_skills": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS"],
+        "preferred_skills": [],
+        "related_job_titles": ["Frontend Developer", "UI Developer"]
+    },
+    {
+        "job_title": "Vue.js Developer",
+        "description": "A Vue.js Developer designs and develops scalable web applications using Vue.js framework.",
+        "required_skills": ["Vue.js"],
+        "preferred_skills": [ "JavaScript", "HTML", "CSS"],
+        "related_job_titles": ["Frontend Developer", "UI Developer"]
+    },
+    {
+        "job_title": "Python Developer",
+        "description": "A Python Developer works on developing applications and scripts using Python programming language.",
+        "required_skills": ["Python", "Data Structures", "Algorithm Design", "Object-oriented Programming"],
+        "preferred_skills": ["Django", "Flask", "Machine Learning", "Data Analysis"],
+        "related_job_titles": ["Software Engineer", "Backend Developer"]
+    },
+    {
+        "job_title": "Java Developer",
+        "description": "A Java Developer designs and develops applications using Java programming language.",
+        "required_skills": ["Java", "Spring Framework", "Object-oriented Programming", "SQL"],
+        "preferred_skills": ["Microservices Architecture", "Cloud Computing", "Big Data Technologies"],
+        "related_job_titles": ["Backend Developer", "Software Engineer"]
+    },
+    {
+        "job_title": "iOS Developer",
+        "description": "An iOS Developer focuses on designing and developing applications for Apple's iOS platform.",
+        "required_skills": ["Swift", "iOS SDK", "Xcode", "Objective-C"],
+        "preferred_skills": ["UI/UX Design", "RESTful APIs", "Core Data"],
+        "related_job_titles": ["Mobile App Developer", "Software Engineer"]
+    },
+    {
+        "job_title": "Android Developer",
+        "description": "An Android Developer specializes in designing and developing applications for Android platform.",
+        "required_skills": ["Java", "Kotlin", "Android SDK", "Android Studio"],
+        "preferred_skills": ["RESTful APIs", "Firebase", "Material Design"],
+        "related_job_titles": ["Mobile App Developer", "Software Engineer"]
+    },
+    {
+        "job_title": "Cloud Engineer",
+        "description": "A Cloud Engineer designs and manages cloud infrastructure and services for organizations.",
+        "required_skills": ["Cloud Platforms (AWS, Azure, GCP)", "Infrastructure as Code (Terraform, CloudFormation)", "Networking", "Security Best Practices"],
+        "preferred_skills": ["DevOps Practices", "Containers (Docker, Kubernetes)", "Serverless Architectures"],
+        "related_job_titles": ["DevOps Engineer", "System Administrator"]
+    },
+    {
+        "job_title": "Blockchain Developer",
+        "description": "A Blockchain Developer focuses on designing and developing decentralized applications (DApps) using blockchain technology.",
+        "required_skills": ["Blockchain Platforms (Ethereum, Hyperledger)", "Smart Contracts", "Cryptocurrency Development"],
+        "preferred_skills": ["Web3.js", "Solidity", "Consensus Algorithms"],
+        "related_job_titles": ["Smart Contract Developer", "Cryptocurrency Developer"]
+    },
+    {
+        "job_title": "Cybersecurity Analyst",
+        "description": "A Cybersecurity Analyst protects computer systems and networks from cyber threats and attacks.",
+        "required_skills": ["Network Security", "Vulnerability Assessment", "Intrusion Detection Systems (IDS)", "Incident Response"],
+        "preferred_skills": ["Security Information and Event Management (SIEM)", "Penetration Testing", "Security Certifications (CISSP, CEH)"],
+        "related_job_titles": ["Information Security Analyst", "Security Engineer"]
+    },
+    {
+        "job_title": "AI Engineer",
+        "description": "An AI Engineer develops and deploys artificial intelligence models and algorithms.",
+        "required_skills": ["Machine Learning", "Deep Learning", "Natural Language Processing (NLP)", "Python"],
+        "preferred_skills": ["TensorFlow", "PyTorch", "Computer Vision", "Reinforcement Learning"],
+        "related_job_titles": ["Machine Learning Engineer", "Data Scientist"]
+    },
+    {
+        "job_title": "Game Developer",
+        "description": "A Game Developer designs, develops, and tests video games for various platforms.",
+        "required_skills": ["Game Design", "Unity or Unreal Engine", "C# or C++", "3D Modeling and Animation"],
+        "preferred_skills": ["Game Physics", "Multiplayer Game Development", "Mobile Game Development"],
+        "related_job_titles": ["Software Engineer", "Graphics Programmer"]
+    },
+    {
+        "job_title": "Embedded Systems Engineer",
+        "description": "An Embedded Systems Engineer designs and develops embedded systems for various applications.",
+        "required_skills": ["Embedded C/C++", "Microcontroller Programming", "RTOS (Real-Time Operating Systems)", "Hardware Interfacing"],
+        "preferred_skills": ["PCB Design", "Wireless Communication Protocols", "IoT Technologies"],
+        "related_job_titles": ["Hardware Engineer", "Firmware Engineer"]
+    },
+    {
+        "job_title": "Big Data Engineer",
+        "description": "A Big Data Engineer designs and develops scalable data pipelines and analytics solutions.",
+        "required_skills": ["Hadoop", "Spark", "Python or Scala", "ETL (Extract, Transform, Load)", "Data Warehousing"],
+        "preferred_skills": ["NoSQL Databases (MongoDB, Cassandra)", "Real-time Data Processing", "Cloud Platforms (AWS, Azure)"],
+        "related_job_titles": ["Data Engineer", "Machine Learning Engineer"]
+    },
+    {
+        "job_title": "Full Stack Developer",
+        "description": "A Full Stack Developer designs and develops both client-side and server-side applications.",
+        "required_skills": ["JavaScript (Node.js)", "HTML", "CSS", "RESTful APIs", "Database Systems (SQL, NoSQL)", "Version Control (Git)"],
+        "preferred_skills": ["React.js or Angular", "Python or Java", "Microservices Architecture", "CI/CD"],
+        "related_job_titles": ["Software Engineer", "Web Developer"]
+    },
+    {
+        "job_title": "Product Manager",
+        "description": "A Product Manager oversees the development and launch of products, from inception to market.",
+        "required_skills": ["Product Strategy", "Market Research", "Product Development Lifecycle", "Project Management"],
+        "preferred_skills": ["UX/UI Design", "Agile Methodologies", "Data Analysis", "Customer Insights"],
+        "related_job_titles": ["Product Owner", "Program Manager"]
+    },
+    {
+        "job_title": "Quality Assurance Engineer",
+        "description": "A Quality Assurance Engineer ensures the quality of software products through testing and validation.",
+        "required_skills": ["Test Automation", "Manual Testing", "Regression Testing", "Bug Tracking", "SQL"],
+        "preferred_skills": ["API Testing", "Performance Testing", "Security Testing", "CI/CD"],
+        "related_job_titles": ["QA Tester", "Software Tester"]
+    },
+    {
+        "job_title": "Technical Support Engineer",
+        "description": "A Technical Support Engineer provides technical assistance and support to customers and internal teams.",
+        "required_skills": ["Troubleshooting", "Technical Documentation", "Customer Service", "Ticketing Systems"],
+        "preferred_skills": ["Networking Fundamentals", "Linux/Windows Administration", "Scripting (Python, Bash)"],
+        "related_job_titles": ["Customer Support Specialist", "Help Desk Technician"]
+    },
+    {
+        "job_title": "IT Project Manager",
+        "description": "An IT Project Manager plans, organizes, and oversees IT projects within an organization.",
+        "required_skills": ["Project Management", "Budgeting", "Risk Management", "Stakeholder Communication"],
+        "preferred_skills": ["Agile Methodologies", "Scrum", "Resource Allocation", "Change Management"],
+        "related_job_titles": ["Project Manager", "Program Manager"]
+    },
+    {
+        "job_title": "Data Engineer",
+        "description": "A Data Engineer designs and develops scalable data pipelines and architectures.",
+        "required_skills": ["SQL", "Python", "ETL (Extract, Transform, Load)", "Data Warehousing", "Big Data Technologies", "Database Management"],
+        "preferred_skills": ["Apache Spark", "Data Modeling", "Data Visualization", "Cloud Platforms (AWS, Azure, GCP)"],
+        "related_job_titles": ["Data Scientist", "Machine Learning Engineer", "Big Data Engineer"]
+    },
+    {
+        "job_title": "ERP Consultant",
+        "description": "An ERP Consultant implements and customizes enterprise resource planning (ERP) software for organizations.",
+        "required_skills": ["ERP Implementation", "Business Process Analysis", "Configuration", "User Training"],
+        "preferred_skills": ["ERP Modules (Finance, HR, Supply Chain)", "Data Migration", "Integration"],
+        "related_job_titles": ["Business Analyst", "Systems Analyst"]
+    },
+        {
+        "job_title": "IT Security Specialist",
+        "description": "An IT Security Specialist protects computer systems and networks from security breaches and cyber attacks.",
+        "required_skills": ["Network Security", "Vulnerability Assessment", "Intrusion Detection Systems (IDS)", "Incident Response"],
+        "preferred_skills": ["Security Information and Event Management (SIEM)", "Penetration Testing", "Security Certifications (CISSP, CEH)"],
+        "related_job_titles": ["Information Security Analyst", "Security Engineer"]
+    },
+    {
+        "job_title": "Front End Developer",
+        "description": "A Front-End Developer focuses on developing and maintaining user interfaces for web applications.",
+        "required_skills": ["HTML", "CSS", "JavaScript", "Responsive Design", "Front-End Frameworks (React, Angular, Vue)"],
+        "preferred_skills": ["TypeScript", "UX/UI Design", "Cross-browser Compatibility", "Web Performance Optimization"],
+        "related_job_titles": ["UI Developer", "Web Developer"]
+    },
+    {
+        "job_title": "Technical Writer",
+        "description": "A Technical Writer creates clear and concise documentation for technical products and processes.",
+        "required_skills": ["Technical Writing", "Documentation Tools (Markdown, LaTeX)", "Editing", "Research"],
+        "preferred_skills": ["Graphic Design", "API Documentation", "Content Management Systems (CMS)", "User Guides"],
+        "related_job_titles": ["Content Writer", "Documentation Specialist"]
+    },
+    {
+        "job_title": "IT Support Specialist",
+        "description": "An IT Support Specialist provides technical support and troubleshooting assistance to end-users and organizations.",
+        "required_skills": ["Technical Support", "Troubleshooting", "Customer Service", "Hardware and Software Installation"],
+        "preferred_skills": ["Networking Fundamentals", "System Administration (Windows, Linux)", "Remote Desktop Services", "ITIL Framework"],
+        "related_job_titles": ["Help Desk Technician", "Desktop Support Technician"]
+    },
+    {
+        "job_title": "Network Administrator",
+        "description": "A Network Administrator manages and maintains an organization's computer network infrastructure.",
+        "required_skills": ["Network Configuration", "Troubleshooting", "Network Monitoring", "Security Protocols"],
+        "preferred_skills": ["Cisco Networking", "Firewall Configuration", "Virtual Private Networks (VPN)", "Wireless Networking"],
+        "related_job_titles": ["System Administrator", "Network Engineer"]
+    },
+    {
+        "job_title": "Business Intelligence Analyst",
+        "description": "A Business Intelligence Analyst analyzes complex data to help organizations make strategic business decisions.",
+        "required_skills": ["Data Analysis", "SQL", "Business Intelligence Tools (Tableau, Power BI)", "Statistical Analysis"],
+        "preferred_skills": ["Data Visualization", "ETL (Extract, Transform, Load)", "Predictive Analytics", "Dashboard Design"],
+        "related_job_titles": ["Data Analyst", "Business Analyst"]
+    },
+    {
+        "job_title": "Database Administrator",
+        "description": "A Database Administrator manages and maintains databases to ensure their security, availability, and performance.",
+        "required_skills": ["Database Management (SQL, NoSQL)", "Database Security", "Backup and Recovery", "Performance Tuning"],
+        "preferred_skills": ["Data Modeling", "Cloud Databases (AWS RDS, Azure SQL Database)", "Database Design", "Replication"],
+        "related_job_titles": ["Database Developer", "Data Engineer"]
+    },
+    {
+        "job_title": "UX Researcher",
+        "description": "A UX Researcher investigates user behaviors, needs, and motivations to design better user experiences.",
+        "required_skills": ["User Research Methods", "Usability Testing", "Interviewing Users", "Data Analysis"],
+        "preferred_skills": ["Prototyping Tools (Sketch, Adobe XD)", "Statistical Analysis", "Qualitative Research", "Persona Creation"],
+        "related_job_titles": ["UI/UX Designer", "User Experience Designer"]
+    },
+    {
+        "job_title": "UI Developer",
+        "description": "A UI Developer focuses on designing and developing user interfaces for web applications.",
+        "required_skills": ["HTML", "CSS", "JavaScript", "Responsive Design", "Front-End Frameworks (React, Angular, Vue)"],
+        "preferred_skills": ["TypeScript", "UX/UI Design", "Cross-browser Compatibility", "Web Performance Optimization"],
+        "related_job_titles": ["Front-End Developer", "Web Developer"]
+    },
+    {
+        "job_title": "Information Security Analyst",
+        "description": "An Information Security Analyst protects an organization's information systems and networks from security threats.",
+        "required_skills": ["Information Security", "Security Risk Assessment", "Security Policies and Procedures", "Incident Response"],
+        "preferred_skills": ["Penetration Testing", "Security Information and Event Management (SIEM)", "Firewall Configuration", "Vulnerability Management"],
+        "related_job_titles": ["IT Security Specialist", "Security Engineer"]
+    },
+    {
+        "job_title": "Cloud Solutions Architect",
+        "description": "A Cloud Solutions Architect designs and oversees the implementation of cloud-based solutions for organizations.",
+        "required_skills": ["Cloud Platforms (AWS, Azure, GCP)", "Solution Architecture", "Infrastructure as Code (Terraform, CloudFormation)", "Microservices"],
+        "preferred_skills": ["DevOps Practices", "Containerization (Docker, Kubernetes)", "Serverless Architectures", "Big Data Technologies"],
+        "related_job_titles": ["Cloud Engineer", "DevOps Engineer"]
+    },
+    {
+        "job_title": "IT Consultant",
+        "description": "An IT Consultant provides advice and expertise on IT strategy, solutions, and implementations for clients.",
+        "required_skills": ["IT Strategy", "Project Management", "Business Analysis", "Vendor Management"],
+        "preferred_skills": ["Cloud Computing", "Cybersecurity", "Enterprise Architecture", "ITIL Framework"],
+        "related_job_titles": ["Technical Consultant", "Solution Architect"]
+    },
+    {
+        "job_title": "IT Auditor",
+        "description": "An IT Auditor assesses the effectiveness of an organization's IT controls, policies, and procedures.",
+        "required_skills": ["Auditing", "Risk Assessment", "Compliance Management", "Internal Controls"],
+        "preferred_skills": ["Information Security", "Data Analysis", "IT Governance", "Audit Tools"],
+        "related_job_titles": ["Internal Auditor", "Compliance Analyst"]
+    },
+    {
+        "job_title": "Software Engineer",
+        "description": "A Software Engineer designs, develops, and maintains software applications.",
+        "required_skills": ["Programming (Python, Java, C++)", "Software Development Lifecycle (SDLC)", "Problem-solving Skills", "Algorithm Design"],
+        "preferred_skills": ["Agile Methodologies", "Version Control (Git)", "Cloud Computing", "Microservices Architecture"],
+        "related_job_titles": ["Backend Developer", "Frontend Developer"]
+    },
+    {
+        "job_title": "IT Manager",
+        "description": "An IT Manager oversees an organization's IT operations, including infrastructure, networks, and systems.",
+        "required_skills": ["IT Management", "Team Leadership", "Budget Management", "Strategic Planning"],
+        "preferred_skills": ["Project Management", "Change Management", "Vendor Management", "ITIL Framework"],
+        "related_job_titles": ["Technical Manager", "Infrastructure Manager"]
+    },
+    {
+        "job_title": "Machine Learning Researcher",
+        "description": "A Machine Learning Researcher conducts research to advance machine learning algorithms and techniques.",
+        "required_skills": ["Machine Learning Algorithms", "Statistical Modeling", "Python or R", "Research Publication"],
+        "preferred_skills": ["Deep Learning", "Natural Language Processing (NLP)", "Data Analysis", "Algorithm Optimization"],
+        "related_job_titles": ["Machine Learning Engineer", "Data Scientist"]
+    },
+    {
+        "job_title": "Data Analyst",
+        "description": "A Data Analyst interprets data and turns it into information to help organizations make data-driven decisions.",
+        "required_skills": ["Data Analysis", "SQL", "Data Visualization", "Statistical Analysis"],
+        "preferred_skills": ["Python or R", "Business Intelligence Tools (Tableau, Power BI)", "Data Mining", "Predictive Analytics"],
+        "related_job_titles": ["Business Intelligence Analyst", "Data Scientist"]
+    },
+    {
+        "job_title": "Network Security Engineer",
+        "description": "A Network Security Engineer designs and implements secure network solutions to protect an organization's data and systems.",
+        "required_skills": ["Network Security", "Firewall Configuration", "Intrusion Detection Systems (IDS)", "Encryption"],
+        "preferred_skills": ["Penetration Testing", "Vulnerability Assessment", "Security Certifications (CISSP, CISM)", "Security Information and Event Management (SIEM)"],
+        "related_job_titles": ["IT Security Specialist", "Information Security Analyst"]
+    },
+    {
+        "job_title": "Software Developer",
+        "description": "A Software Developer designs, develops, and tests software applications.",
+        "required_skills": ["Programming Languages (Java, Python, C++)", "Software Development Lifecycle (SDLC)", "Problem-solving Skills", "Algorithm Design"],
+        "preferred_skills": ["Agile Methodologies", "Version Control (Git)", "Web Development Frameworks (Spring, Django)", "Cloud Computing"],
+        "related_job_titles": ["Backend Developer", "Full Stack Developer"]
+    },
+    {
+        "job_title": "IT Specialist",
+        "description": "An IT Specialist provides technical support and resolves IT issues for individuals or organizations.",
+        "required_skills": ["Technical Support", "Troubleshooting", "Hardware and Software Installation", "Customer Service"],
+                "preferred_skills": ["Network Administration", "System Administration", "Remote Desktop Services", "ITIL Framework"],
+        "related_job_titles": ["IT Support Specialist", "Help Desk Technician"]
+    },
+    {
+        "job_title": "Technical Consultant",
+        "description": "A Technical Consultant provides expert advice and solutions on technology implementations and optimizations.",
+        "required_skills": ["Technical Expertise", "Problem-solving", "Project Management", "Client Communication"],
+        "preferred_skills": ["Cloud Computing", "Cybersecurity", "Enterprise Architecture", "ITIL Framework"],
+        "related_job_titles": ["IT Consultant", "Solution Architect"]
+    },
+    {
+        "job_title": "Test Lead",
+        "description": "A Test Lead manages the testing process and team to ensure software quality and functionality.",
+        "required_skills": ["Software Testing", "Test Planning", "Test Automation Tools", "Defect Tracking"],
+        "preferred_skills": ["Agile Methodologies", "Performance Testing", "Quality Assurance", "Leadership"],
+        "related_job_titles": ["QA Engineer", "Quality Assurance Manager"]
+    },
+    {
+        "job_title": "Software Consultant",
+        "description": "A Software Consultant provides expert advice on software development, implementation, and optimization.",
+        "required_skills": ["Software Development", "Technical Expertise", "Client Communication", "Project Management"],
+        "preferred_skills": ["Cloud Computing", "Cybersecurity", "Enterprise Software", "Agile Methodologies"],
+        "related_job_titles": ["Technical Consultant", "Solution Architect"]
+    },
+    {
+        "job_title": "Data Architect",
+        "description": "A Data Architect designs and manages data systems and infrastructure to support data storage, access, and analysis.",
+        "required_skills": ["Data Modeling", "Database Design", "SQL", "ETL (Extract, Transform, Load)"],
+        "preferred_skills": ["Big Data Technologies", "Cloud Databases", "Data Governance", "NoSQL Databases"],
+        "related_job_titles": ["Database Administrator", "Data Engineer"]
+    },
+    {
+        "job_title": "Systems Engineer",
+        "description": "A Systems Engineer designs, integrates, and manages complex systems within an organization.",
+        "required_skills": ["Systems Design", "Integration", "Troubleshooting", "System Administration"],
+        "preferred_skills": ["Cloud Computing", "Network Security", "Automation", "DevOps"],
+        "related_job_titles": ["Network Engineer", "System Administrator"]
+    },
+    {
+        "job_title": "Technical Support Specialist",
+        "description": "A Technical Support Specialist provides technical support and resolves issues for users and organizations.",
+        "required_skills": ["Technical Support", "Troubleshooting", "Customer Service", "Hardware and Software Installation"],
+        "preferred_skills": ["Remote Desktop Services", "Network Administration", "System Administration", "ITIL Framework"],
+        "related_job_titles": ["IT Support Specialist", "Help Desk Technician"]
+    },
+    {
+        "job_title": "IT Security Engineer",
+        "description": "An IT Security Engineer designs and implements security measures to protect an organization's IT systems.",
+        "required_skills": ["Network Security", "Firewall Configuration", "Intrusion Detection Systems (IDS)", "Incident Response"],
+        "preferred_skills": ["Penetration Testing", "Vulnerability Assessment", "Security Certifications (CISSP, CEH)", "SIEM"],
+        "related_job_titles": ["Information Security Analyst", "IT Security Specialist"]
+    },
+    {
+        "job_title": "Database Developer",
+        "description": "A Database Developer designs and develops databases and ensures their performance, security, and availability.",
+        "required_skills": ["Database Development (SQL, NoSQL)", "Data Modeling", "Database Security", "Performance Tuning"],
+        "preferred_skills": ["ETL Processes", "Cloud Databases", "Database Design", "Data Warehousing"],
+        "related_job_titles": ["Database Administrator", "Data Engineer"]
+    },
+    {
+        "job_title": "Software Architect",
+        "description": "A Software Architect designs and oversees the development of software systems and applications.",
+        "required_skills": ["Software Architecture", "System Design", "Programming (Java, C++, Python)", "Problem-solving"],
+        "preferred_skills": ["Microservices", "Cloud Computing", "DevOps Practices", "Agile Methodologies"],
+        "related_job_titles": ["Solution Architect", "Technical Lead"]
+    },
+    {
+        "job_title": "Data Scientist",
+        "description": "A Data Scientist analyzes complex data to extract insights and build predictive models.",
+        "required_skills": ["Data Analysis", "Machine Learning", "Statistical Modeling", "Python or R"],
+        "preferred_skills": ["Big Data Technologies", "Data Visualization", "Natural Language Processing (NLP)", "Data Mining"],
+        "related_job_titles": ["Data Analyst", "Machine Learning Engineer"]
+    },
+    {
+        "job_title": "Financial Analyst",
+        "description": "A Financial Analyst evaluates financial data to assist organizations in making informed financial decisions.",
+        "required_skills": ["Financial Analysis", "Financial Modeling", "Excel", "Data Analysis"],
+        "preferred_skills": ["SQL", "Financial Reporting", "Budgeting", "Forecasting"],
+        "related_job_titles": ["Investment Analyst", "Business Analyst"]
+    },
+    {
+        "job_title": "HR Manager",
+        "description": "An HR Manager oversees an organization's human resources operations, including recruitment, training, and employee relations.",
+        "required_skills": ["HR Management", "Recruitment", "Employee Relations", "Performance Management"],
+        "preferred_skills": ["HRIS Systems", "Compensation and Benefits", "Organizational Development", "Employment Law"],
+        "related_job_titles": ["Recruitment Manager", "HR Coordinator"]
+    },
+    {
+        "job_title": "Operations Manager",
+        "description": "An Operations Manager oversees the day-to-day operations of an organization to ensure efficiency and effectiveness.",
+        "required_skills": ["Operations Management", "Project Management", "Process Improvement", "Team Leadership"],
+        "preferred_skills": ["Supply Chain Management", "Lean Manufacturing", "Financial Management", "Customer Service"],
+        "related_job_titles": ["General Manager", "Production Manager"]
+    },
+    {
+        "job_title": "Marketing Manager",
+        "description": "A Marketing Manager develops and implements marketing strategies to promote products and services.",
+        "required_skills": ["Marketing Strategy", "Digital Marketing", "Market Research", "Campaign Management"],
+        "preferred_skills": ["SEO/SEM", "Content Marketing", "Social Media Marketing", "Brand Management"],
+        "related_job_titles": ["Brand Manager", "Digital Marketing Manager"]
+    },
+    {
+        "job_title": "Customer Service Representative",
+        "description": "A Customer Service Representative interacts with customers to handle complaints, process orders, and provide information.",
+        "required_skills": ["Customer Service", "Communication", "Problem-solving", "Data Entry"],
+        "preferred_skills": ["CRM Systems", "Sales Support", "Technical Support", "Multitasking"],
+        "related_job_titles": ["Call Center Representative", "Customer Support Specialist"]
+    },
+    {
+        "job_title": "Sales Manager",
+        "description": "A Sales Manager oversees the sales team and develops strategies to achieve sales targets.",
+        "required_skills": ["Sales Management", "Sales Strategy", "Team Leadership", "Customer Relationship Management"],
+        "preferred_skills": ["Salesforce", "Negotiation", "Market Analysis", "Sales Training"],
+        "related_job_titles": ["Account Manager", "Business Development Manager"]
+    },
+    {
+        "job_title": "Accountant",
+        "description": "An Accountant prepares and examines financial records to ensure accuracy and compliance with regulations.",
+        "required_skills": ["Accounting", "Financial Reporting", "Taxation", "Bookkeeping"],
+        "preferred_skills": ["CPA Certification", "Financial Analysis", "Audit", "Budgeting"],
+        "related_job_titles": ["Financial Analyst", "Auditor"]
+    },
+    {
+        "job_title": "Legal Assistant",
+        "description": "A Legal Assistant supports lawyers by performing various administrative and research tasks.",
+        "required_skills": ["Legal Research", "Document Preparation", "Client Communication", "Case Management"],
+        "preferred_skills": ["Paralegal Certification", "Legal Writing", "Litigation Support", "File Management"],
+        "related_job_titles": ["Paralegal", "Law Clerk"]
+    },
+    {
+        "job_title": "Medical Assistant",
+        "description": "A Medical Assistant performs clinical and administrative tasks in healthcare settings.",
+        "required_skills": ["Patient Care", "Medical Terminology", "Clinical Procedures", "Medical Record Keeping"],
+        "preferred_skills": ["Certified Medical Assistant (CMA)", "Phlebotomy", "EKG", "Electronic Health Records (EHR)"],
+        "related_job_titles": ["Nursing Assistant", "Healthcare Assistant"]
+    },
+    {
+        "job_title": "Research Scientist",
+        "description": "A Research Scientist conducts scientific research to advance knowledge in their field.",
+        "required_skills": ["Research Methods", "Data Analysis", "Scientific Writing", "Experimentation"],
+        "preferred_skills": ["Grant Writing", "Laboratory Techniques", "Statistical Analysis", "Project Management"],
+        "related_job_titles": ["Postdoctoral Researcher", "Research Associate"]
+    },
+    {
+        "job_title": "Graphic Designer",
+        "description": "A Graphic Designer creates visual concepts to communicate ideas and captivate consumers.",
+        "required_skills": ["Graphic Design", "Adobe Creative Suite", "Typography", "Branding"],
+                "preferred_skills": ["Web Design", "Illustration", "Motion Graphics", "User Interface Design"],
+        "related_job_titles": ["Visual Designer", "Digital Designer"]
+    },
+    {
+        "job_title": "Content Writer",
+        "description": "A Content Writer creates written material for websites, blogs, social media, and other digital platforms.",
+        "required_skills": ["Writing", "SEO", "Research", "Editing"],
+        "preferred_skills": ["Content Management Systems", "Social Media", "Copywriting", "Digital Marketing"],
+        "related_job_titles": ["Copywriter", "Technical Writer"]
+    },
+    {
+        "job_title": "Public Relations Specialist",
+        "description": "A Public Relations Specialist manages an organization's public image and communication with the media.",
+        "required_skills": ["Public Relations", "Media Relations", "Writing", "Event Planning"],
+        "preferred_skills": ["Crisis Management", "Social Media", "Marketing", "Brand Management"],
+        "related_job_titles": ["Communications Specialist", "Press Officer"]
+    },
+    {
+        "job_title": "Logistics Manager",
+        "description": "A Logistics Manager oversees the supply chain and logistics operations to ensure efficient delivery of goods.",
+        "required_skills": ["Supply Chain Management", "Logistics Planning", "Inventory Management", "Transportation Management"],
+        "preferred_skills": ["Warehouse Management", "Lean Logistics", "Freight Management", "ERP Systems"],
+        "related_job_titles": ["Supply Chain Manager", "Operations Manager"]
+    },
+    {
+        "job_title": "Bank Teller",
+        "description": "A Bank Teller processes financial transactions for customers, such as deposits, withdrawals, and payments.",
+        "required_skills": ["Customer Service", "Cash Handling", "Attention to Detail", "Basic Math"],
+        "preferred_skills": ["Sales", "Financial Products", "Account Management", "Multitasking"],
+        "related_job_titles": ["Customer Service Representative", "Personal Banker"]
+    },
+    {
+        "job_title": "Insurance Agent",
+        "description": "An Insurance Agent sells insurance policies and helps clients choose coverage that meets their needs.",
+        "required_skills": ["Sales", "Customer Service", "Knowledge of Insurance Products", "Communication"],
+        "preferred_skills": ["Financial Planning", "Risk Management", "CRM Software", "Networking"],
+        "related_job_titles": ["Financial Advisor", "Sales Representative"]
+    },
+    {
+        "job_title": "Project Coordinator",
+        "description": "A Project Coordinator assists in managing and organizing projects to ensure they are completed on time and within budget.",
+        "required_skills": ["Project Management", "Scheduling", "Communication", "Budgeting"],
+        "preferred_skills": ["MS Project", "Agile Methodologies", "Risk Management", "Time Management"],
+        "related_job_titles": ["Project Manager", "Project Assistant"]
+    },
+    {
+        "job_title": "HR Coordinator",
+        "description": "An HR Coordinator supports the HR department in various administrative tasks and recruitment activities.",
+        "required_skills": ["HR Administration", "Recruitment", "Employee Relations", "Communication"],
+        "preferred_skills": ["HRIS Systems", "Onboarding", "Payroll", "Event Planning"],
+        "related_job_titles": ["HR Assistant", "Recruitment Coordinator"]
+    },
+    {
+        "job_title": "Social Media Manager",
+        "description": "A Social Media Manager develops and implements social media strategies to promote a brand and engage with its audience.",
+        "required_skills": ["Social Media Strategy", "Content Creation", "Analytics", "Community Management"],
+        "preferred_skills": ["SEO", "Graphic Design", "Digital Marketing", "Copywriting"],
+        "related_job_titles": ["Digital Marketing Manager", "Content Manager"]
+    },
+    {
+        "job_title": "Real Estate Agent",
+        "description": "A Real Estate Agent assists clients in buying, selling, and renting properties.",
+        "required_skills": ["Sales", "Customer Service", "Negotiation", "Property Valuation"],
+        "preferred_skills": ["Real Estate Law", "Marketing", "Networking", "CRM Software"],
+        "related_job_titles": ["Property Manager", "Real Estate Broker"]
+    },
+    {
+        "job_title": "Executive Assistant",
+        "description": "An Executive Assistant provides high-level administrative support to executives in an organization.",
+        "required_skills": ["Administrative Support", "Scheduling", "Communication", "Problem-solving"],
+        "preferred_skills": ["Project Management", "Event Planning", "Microsoft Office", "Confidentiality"],
+        "related_job_titles": ["Administrative Assistant", "Office Manager"]
+    },
+    {
+        "job_title": "Business Development Manager",
+        "description": "A Business Development Manager identifies and pursues new business opportunities to drive growth.",
+        "required_skills": ["Business Development", "Sales", "Market Research", "Negotiation"],
+        "preferred_skills": ["Strategic Planning", "Networking", "CRM Software", "Financial Analysis"],
+        "related_job_titles": ["Sales Manager", "Account Manager"]
+    },
+    {
+        "job_title": "Business Analyst",
+        "description": "A Business Analyst analyzes business processes and data to provide insights and solutions for improvement.",
+        "required_skills": ["Data Analysis", "Business Process Improvement", "Requirements Gathering", "Stakeholder Management"],
+        "preferred_skills": ["SQL", "Project Management", "Financial Analysis", "Agile Methodologies"],
+        "related_job_titles": ["Data Analyst", "Project Manager"]
+    },
+    {
+        "job_title": "QA Engineer",
+        "description": "A QA Engineer develops and executes test plans to ensure the quality and functionality of software products.",
+        "required_skills": ["Software Testing", "Test Automation", "Bug Tracking", "Test Planning"],
+        "preferred_skills": ["Selenium", "JUnit", "Performance Testing", "Agile Methodologies"],
+        "related_job_titles": ["Test Engineer", "Quality Assurance Manager"]
+    },
+    {
+        "job_title": "Scrum Master",
+        "description": "A Scrum Master facilitates the Scrum process, ensuring the team follows Agile practices and principles.",
+        "required_skills": ["Scrum", "Agile Methodologies", "Facilitation", "Project Management"],
+        "preferred_skills": ["Certified Scrum Master (CSM)", "Agile Coaching", "Conflict Resolution", "Team Building"],
+        "related_job_titles": ["Agile Coach", "Project Manager"]
+    },
+    {
+        "job_title": "Systems Administrator",
+        "description": "A Systems Administrator manages and maintains an organization's IT infrastructure and systems.",
+        "required_skills": ["System Administration", "Network Administration", "Troubleshooting", "User Support"],
+        "preferred_skills": ["Linux", "Windows Server", "Virtualization", "Cloud Computing"],
+        "related_job_titles": ["Network Administrator", "IT Support Specialist"]
+    },
+    {
+        "job_title": "Flutter Developer",
+        "description": "A Flutter Developer builds and maintains mobile applications using the Flutter framework.",
+        "required_skills": ["Flutter", "Dart", "Mobile App Development", "UI/UX Design"],
+        "preferred_skills": ["Firebase", "RESTful APIs", "Version Control (Git)", "Cross-platform Development"],
+        "related_job_titles": ["Mobile App Developer", "React Native Developer"]
+    },
+    {
+        "job_title": "Mobile App Developer",
+        "description": "A Mobile App Developer designs and develops applications for mobile devices.",
+        "required_skills": ["Mobile App Development", "Java", "Swift", "UI/UX Design"],
+        "preferred_skills": ["Android Development", "iOS Development", "Cross-platform Development", "RESTful APIs"],
+        "related_job_titles": ["iOS Developer", "Android Developer"]
+    },
+    {
+        "job_title": "React Native Developer",
+        "description": "A React Native Developer builds mobile applications using the React Native framework.",
+        "required_skills": ["React Native", "JavaScript", "Mobile App Development", "UI/UX Design"],
+        "preferred_skills": ["Redux", "RESTful APIs", "Version Control (Git)", "Cross-platform Development"],
+        "related_job_titles": ["Mobile App Developer", "Flutter Developer"]
+    },
+    {
+        "job_title": "Xamarin Developer",
+        "description": "A Xamarin Developer builds cross-platform mobile applications using the Xamarin framework.",
+        "required_skills": ["Xamarin", "C#", "Mobile App Development", "UI/UX Design"],
+        "preferred_skills": ["Xamarin.Forms", "RESTful APIs", "Version Control (Git)", "Cross-platform Development"],
+        "related_job_titles": ["Mobile App Developer", "React Native Developer"]
+    },
+    {
+        "job_title": "Cordova Developer",
+        "description": "A Cordova Developer builds mobile applications using the Apache Cordova framework.",
+        "required_skills": ["Apache Cordova", "JavaScript", "Mobile App Development", "UI/UX Design"],
+        "preferred_skills": ["HTML5", "CSS3", "RESTful APIs", "Cross-platform Development"],
+        "related_job_titles": ["Mobile App Developer", "React Native Developer"]
+    },
+    {
+        "job_title": "Mobile UI/UX Designer",
+        "description": "A Mobile UI/UX Designer creates user interfaces and user experiences for mobile applications.",
+        "required_skills": ["UI/UX Design", "Wireframing", "Prototyping", "User Research"],
+        "preferred_skills": ["Adobe XD", "Sketch", "Figma", "Usability Testing"],
+        "related_job_titles": ["UI/UX Designer", "Mobile App Developer"]
+    },
+    {
+        "job_title": "AWS Developer",
+        "description": "An AWS Developer designs, develops, and maintains applications on the Amazon Web Services (AWS) platform.",
+        "required_skills": ["AWS Services", "Cloud Computing", "Python", "DevOps"],
+        "preferred_skills": ["Terraform", "CI/CD", "Serverless Architecture", "Security Best Practices"],
+        "related_job_titles": ["Cloud Engineer", "DevOps Engineer"]
+    },
+    {
+        "job_title": "Data Engineer",
+        "description": "A Data Engineer builds and manages data pipelines, ensuring data is accessible and usable for analysis.",
+        "required_skills": ["Data Pipelines", "ETL Processes", "SQL", "Big Data Technologies"],
+        "preferred_skills": ["Hadoop", "Spark", "Python", "Data Warehousing"],
+        "related_job_titles": ["Data Architect", "Data Analyst"]
+    },
+    {
+        "job_title": "Database Administrator",
+        "description": "A Database Administrator manages and maintains databases, ensuring their performance, security, and availability.",
+        "required_skills": ["Database Management", "SQL", "Backup and Recovery", "Performance Tuning"],
+        "preferred_skills": ["Oracle", "MySQL", "Database Security", "Data Modeling"],
+        "related_job_titles": ["Data Engineer", "Systems Administrator"]
+    },
+    {
+        "job_title": "Information Security Analyst",
+        "description": "An Information Security Analyst protects an organization's computer systems and networks from cyber threats.",
+        "required_skills": ["Cybersecurity", "Risk Assessment", "Incident Response", "Firewalls"],
+        "preferred_skills": ["Ethical Hacking", "SIEM", "Network Security", "Compliance"],
+        "related_job_titles": ["IT Security Specialist", "Network Security Engineer"]
+    },
+
+    {
+        "job_title": "Software Engineer",
+        "description": "A Software Engineer designs, develops, and maintains software applications...",
+        "required_skills": ["Python", "Java", "C++", "Software Development", "Algorithm Design", "Data Structures", "Version Control (Git)"],
+        "preferred_skills": ["Cloud Computing", "Machine Learning", "DevOps", "Microservices Architecture", "Docker"],
+        "related_job_titles": ["Backend Developer", "Frontend Developer", "Full Stack Developer"]
+    },
+    {
+        "job_title": "Data Scientist",
+        "description": "A Data Scientist analyzes complex data sets to derive actionable insights...",
+        "required_skills": ["Python", "R", "Data Analysis", "Machine Learning", "Statistics", "SQL", "Data Visualization"],
+        "preferred_skills": ["Big Data Technologies", "Deep Learning", "Natural Language Processing", "Data Engineering"],
+        "related_job_titles": ["Data Analyst", "Machine Learning Engineer", "AI Researcher"]
+    },
+    {
+        "job_title": "DevOps Engineer",
+        "description": "A DevOps Engineer ensures smooth deployment and operation of software systems...",
+        "required_skills": ["Linux", "Scripting (Python, Bash)", "CI/CD", "Containerization (Docker)", "Infrastructure as Code (Terraform)", "Cloud Platforms (AWS, Azure, GCP)"],
+        "preferred_skills": ["Kubernetes", "Monitoring Tools (Prometheus, Grafana)", "Networking", "Security Best Practices"],
+        "related_job_titles": ["System Administrator", "Site Reliability Engineer", "Cloud Engineer"]
+    },
+    {
+        "job_title": "Frontend Developer",
+        "description": "A Frontend Developer focuses on designing and developing the user interface of applications...",
+        "required_skills": ["HTML", "CSS", "JavaScript", "React", "Vue", "Angular", "User Experience Design", "Responsive Design"],
+        "preferred_skills": ["SASS", "LESS", "Webpack", "Bootstrap", "Cross-browser Compatibility"],
+        "related_job_titles": ["Web Developer", "UI Developer", "Frontend Engineer"]
+    },
+    {
+        "job_title": "Quality Assurance Engineer",
+        "description": "A Quality Assurance Engineer ensures the quality of software products through testing and validation...",
+        "required_skills": ["Selenium", "Test Automation", "Manual Testing", "Bug Tracking", "SQL", "Python", "Java"],
+        "preferred_skills": ["API Testing", "Performance Testing", "Security Testing", "Continuous Integration"],
+        "related_job_titles": ["Test Engineer", "QA Tester", "Software Tester"]
+    },
+    {
+        "job_title": "Backend Developer",
+        "description": "A Backend Developer specializes in server-side web application logic and integration...",
+        "required_skills": ["Python", "Java", "Node.js", "RESTful APIs", "Database Management", "Version Control (Git)"],
+        "preferred_skills": ["Microservices Architecture", "Docker", "Cloud Platforms (AWS, Azure, GCP)", "CI/CD"],
+        "related_job_titles": ["Software Engineer", "Full Stack Developer", "API Developer"]
+    },
+    {
+        "job_title": "Data Engineer",
+        "description": "A Data Engineer designs and develops scalable data pipelines and architectures...",
+        "required_skills": ["SQL", "Python", "ETL (Extract, Transform, Load)", "Data Warehousing", "Big Data Technologies", "Database Management"],
+        "preferred_skills": ["Apache Spark", "Data Modeling", "Data Visualization", "Cloud Platforms (AWS, Azure, GCP)"],
+        "related_job_titles": ["Data Scientist", "Machine Learning Engineer", "Big Data Engineer"]
+    },
+    {
+        "job_title": "UI/UX Designer",
+        "description": "A UI/UX Designer focuses on enhancing user satisfaction by improving usability and accessibility...",
+        "required_skills": ["User Interface Design", "User Experience Design", "Wireframing", "Prototyping", "Graphic Design"],
+        "preferred_skills": ["HTML", "CSS", "JavaScript", "Adobe Creative Suite", "Responsive Design"],
+        "related_job_titles": ["Frontend Developer", "Web Designer", "Product Designer"]
+    },
+    {
+        "job_title": "Network Engineer",
+        "description": "A Network Engineer designs, implements, and manages computer networks for organizations...",
+        "required_skills": ["Network Security", "Routing Protocols", "Firewalls", "TCP/IP", "VPN", "Switching"],
+        "preferred_skills": ["Cisco Networking", "Wireless Networking", "Network Monitoring Tools", "Cloud Networking"],
+        "related_job_titles": ["System Administrator", "Network Administrator", "Security Engineer"]
+    },
+    {
+        "job_title": "Business Analyst",
+        "description": "A Business Analyst analyzes business processes, identifies needs, and develops strategies to improve efficiency...",
+        "required_skills": ["Data Analysis", "Requirements Gathering", "Process Modeling", "Business Intelligence Tools", "Project Management"],
+        "preferred_skills": ["SQL", "Python", "Statistical Analysis", "Data Visualization", "Agile Methodologies"],
+        "related_job_titles": ["Data Analyst", "Product Manager", "Operations Analyst"]
+    }
+]
