@@ -17,8 +17,8 @@ The `keys.txt` file contains private API keys. Follow these steps to configure i
 You need to configure the `DATABASE_URL` for your database connection. Follow these steps:
 
 1. **Create `database.config`**:
-   - Copy `database.config.template` to `database.config`.
-   - Update the `DATABASE_URL` in `database.config` with your database connection details.
+   - Create a database in your required server with the updated table.
+   - Update the `DATABASE_URL` in the `Constants/constants.py` with your database connection details.
 
 2. **Add `database.config` to `.gitignore`**:
    - Ensure `database.config` is listed in your `.gitignore` file to prevent it from being tracked by Git.
