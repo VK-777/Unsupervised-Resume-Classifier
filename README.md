@@ -68,13 +68,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 ## Contact
 For any questions or feedback, please contact kvedant6@gmail.com.
 
-
-
-
-
-
-
-
-#### -- READ Configuration.md FOR FURTHER ASSISSTANCE TO RUN THE CODE --
+-- **READ Configuration.md FOR FURTHER ASSISSTANCE TO RUN THE CODE** --
 
 
