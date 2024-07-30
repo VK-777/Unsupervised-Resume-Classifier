@@ -58,6 +58,8 @@ To classify a resume, send a GET request to the /classify endpoint with the resu
   - main.py: Main script to run the application.
   - requirements.txt: Lists required Python packages.
 
+# READ Configuration.md FOR FURTHER ASSISSTANCE TO RUN THE CODE
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
