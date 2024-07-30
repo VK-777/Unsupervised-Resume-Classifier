@@ -2,7 +2,7 @@ import pandas as pd
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from Services.classification_service import Classify
-from Daos.database import query, update, get_db, get_candidate_by_id
+from Daos.database import query, updater, get_db, get_candidate_by_id
 from Constants.constants import CHUNK_SIZE
 
 
@@ -20,10 +20,10 @@ class ApiService:
             # Classify the resume
             result = Classify.classify_resume(candidates)
 
-            update(self.db, result)
+            updater(result)
 
-            print(f"Successfully updated {counter}-{counter + CHUNK_SIZE}")
-            counter += CHUNK_SIZE
+            print(f"Successfully updated Chunk {counter}")
+            counter += 1
 
     def classify_by_id(self, candidate_id):
         # Fetch the candidate from the database

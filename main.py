@@ -14,7 +14,7 @@ async def shutdown_server(server):
 
 
 async def main():
-    config = uvicorn.Config("main:app", host="0.0.0.0", port=8000, log_level="info")
+    config = uvicorn.Config("main:app", host="192.168.1.15", port=8000, log_level="info")
     server = uvicorn.Server(config)
 
     # Start server and background tasks

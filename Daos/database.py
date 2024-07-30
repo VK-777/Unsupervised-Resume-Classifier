@@ -45,7 +45,7 @@ def query(db: Session = Depends(get_db)):
             offset += CHUNK_SIZE
 
 
-def update(session: Session, df):
+def updater(df, session: Session = SessionLocal()):
     for _, row in df.iterrows():
         q = text(UPDATE)
         session.execute(q, {'new_value': row['classification'], 'candidate_id': row['id']})
