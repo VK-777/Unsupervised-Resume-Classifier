@@ -1,7 +1,7 @@
 import asyncio
 import sys
 import uvicorn
-from Controller.classifier_controller import shutdown_event
+from Controller.classifier_controller import app, shutdown_event
 
 
 async def shutdown_server(server):

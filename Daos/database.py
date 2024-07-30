@@ -2,8 +2,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from Constants.constants import DATABASE_URL, CHUNK_SIZE
-from Logging.logger import custom_logger
+from Constants.constants import DATABASE_URL, CHUNK_SIZE,GET_BY_ID, GET_ALL, UPDATE
 import pandas as pd
 
 # Create the database engine
@@ -22,7 +21,7 @@ def get_db():
 
 
 def get_candidate_by_id(db: Session, candidate_id: int):
-    q = text(f"SELECT * FROM public.candidate_details WHERE id = :cid")
+    q = text(GET_BY_ID)
     with engine.connect() as connection:
         df = pd.read_sql(q, connection, params={"cid": candidate_id})
         return df
@@ -35,7 +34,7 @@ def query(db: Session = Depends(get_db)):
     with engine.connect() as connection:
         while True:
             # Execute the query
-            q = text("SELECT * FROM public.candidate_details ORDER BY id LIMIT :limit OFFSET :offset")
+            q = text(GET_ALL)
             df = pd.read_sql(q, connection, params={"limit": chunk_size, "offset": offset})
 
             if df.empty:
@@ -48,8 +47,6 @@ def query(db: Session = Depends(get_db)):
 
 def update(session: Session, df):
     for _, row in df.iterrows():
-        q = text(
-            "UPDATE public.candidate_details SET classification = :new_value WHERE id = :candidate_id"
-        )
+        q = text(UPDATE)
         session.execute(q, {'new_value': row['classification'], 'candidate_id': row['id']})
     session.commit()  # Commit changes

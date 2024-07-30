@@ -1,644 +1,0 @@
-[1mdiff --git a/.gitattributes b/.gitattributes[m
-[1mindex 6db898d..b2b0023 100644[m
-[1m--- a/.gitattributes[m
-[1m+++ b/.gitattributes[m
-[36m@@ -1 +1,7 @@[m
- *.py linguist-language=Python[m
-[32m+[m
-[32m+[m[32m# Exclude JSON files from language statistics[m
-[32m+[m[32m*.json linguist-vendored[m
-[32m+[m
-[32m+[m[32m# Exclude log files from language statistics[m
-[32m+[m[32m*.log linguist-vendored[m
-[1mdiff --git a/.gitignore b/.gitignore[m
-[1mindex d5d4063..01f9fe9 100644[m
-[1m--- a/.gitignore[m
-[1m+++ b/.gitignore[m
-[36m@@ -1,6 +1,7 @@[m
- # Ignore sensitive files[m
- keys.txt[m
- database.config[m
-[32m+[m[32mmain.py #contains ip[m
- [m
- # Ignore Python bytecode[m
- __pycache__/[m
-[1mdiff --git a/Constants/__pycache__/constants.cpython-311.pyc b/Constants/__pycache__/constants.cpython-311.pyc[m
-[1mindex d95035f..d457469 100644[m
-Binary files a/Constants/__pycache__/constants.cpython-311.pyc and b/Constants/__pycache__/constants.cpython-311.pyc differ
-[1mdiff --git a/Constants/constants.py b/Constants/constants.py[m
-[1mindex 0c299ca..a658020 100644[m
-[1m--- a/Constants/constants.py[m
-[1m+++ b/Constants/constants.py[m
-[36m@@ -1,6 +1,6 @@[m
-[31m-LOG_FILE_PATH = "C:/#KIIT/RC2.1/Logging"[m
-[31m-DATABASE_URL = "postgresql://postgres:1410@localhost:5432/postgres"[m
-[31m-JOB_SKILLS_FILEPATH = "C:/#KIIT/RC2.1/job_skills.json"[m
-[31m-JOB_TITLES_FILEPATH = "C:/#KIIT/RC2.1/job_titles.json"[m
-[31m-API_KEYS_FILEPATH = "C:/#KIIT/RC2.1/keys.txt"[m
-[32m+[m[32mLOG_FILE_PATH = "Logging/file/path"[m
-[32m+[m[32mDATABASE_URL = "postgres_database_url_here"[m
-[32m+[m[32mJOB_SKILLS_FILEPATH = "job_skills.json/file/path"[m
-[32m+[m[32mJOB_TITLES_FILEPATH = "job_titles.json/file/path"[m
-[32m+[m[32mAPI_KEYS_FILEPATH = "keys.txt/file/path"[m
- CHUNK_SIZE = 100[m
-[1mdiff --git a/Controller/__pycache__/api.cpython-311.pyc b/Controller/__pycache__/api.cpython-311.pyc[m
-[1mnew file mode 100644[m
-[1mindex 0000000..d2ff3d7[m
-Binary files /dev/null and b/Controller/__pycache__/api.cpython-311.pyc differ
-[1mdiff --git a/Controller/api.py b/Controller/api.py[m
-[1mnew file mode 100644[m
-[1mindex 0000000..266b2fe[m
-[1m--- /dev/null[m
-[1m+++ b/Controller/api.py[m
-[36m@@ -0,0 +1,90 @@[m
-[32m+[m[32mimport pandas as pd[m
-[32m+[m[32mfrom fastapi import APIRouter, Depends, FastAPI, HTTPException[m
-[32m+[m[32mfrom sqlalchemy.orm import Session[m
-[32m+[m[32mfrom Daos.database import get_db, query, update, get_candidate_by_id[m
-[32m+[m[32mfrom Services.classification_service import Classify[m
-[32m+[m[32mfrom Logging.logger import custom_logger[m
-[32m+[m[32mfrom Constants.constants import CHUNK_SIZE[m
-[32m+[m[32mimport asyncio[m
-[32m+[m
-[32m+[m[32mapp = FastAPI()[m
-[32m+[m[32mrouter = APIRouter()[m
-[32m+[m[32mcustom_logger = custom_logger.get_instance("custom_logfile.log", max_file_size=500000, backup_count=3)[m
-[32m+[m
-[32m+[m[32m# Event to signal when classification is done[m
-[32m+[m[32mclassification_done_event = asyncio.Event()[m
-[32m+[m[32mclassification_done_event.set()  # Initially set to True[m
-[32m+[m
-[32m+[m[32m# Global variable to manage server shutdown[m
-[32m+[m[32mshutdown_event = asyncio.Event()[m
-[32m+[m
-[32m+[m
-[32m+[m[32m@router.get("/classify")[m
-[32m+[m[32mdef classify_endpoint(db: Session = Depends(get_db)):[m
-[32m+[m[32m    classification_done_event.clear()  # Clear the event at the start of classification[m
-[32m+[m[32m    counter = 0[m
-[32m+[m
-[32m+[m[32m    for candidates in query(db):[m
-[32m+[m[32m        if not isinstance(candidates, pd.DataFrame):[m
-[32m+[m[32m            raise ValueError("Expected a DataFrame from the query generator")[m
-[32m+[m
-[32m+[m[32m        # Classify the resume[m
-[32m+[m[32m        result = Classify.classify_resume(candidates)[m
-[32m+[m
-[32m+[m[32m        update(db, result)[m
-[32m+[m
-[32m+[m[32m        print(f"Successfully updated {counter}-{counter + CHUNK_SIZE}")[m
-[32m+[m[32m        counter += CHUNK_SIZE[m
-[32m+[m
-[32m+[m[32m    # Signal that classification is done[m
-[32m+[m[32m    classification_done_event.set()[m
-[32m+[m
-[32m+[m[32m    return {"message": "Job done"}[m
-[32m+[m
-[32m+[m
-[32m+[m[32m@router.get("/classify_candidate/{candidate_id}")[m
-[32m+[m[32mdef classify_candidate(candidate_id: int, db: Session = Depends(get_db)):[m
-[32m+[m[32m    classification_done_event.clear()[m
-[32m+[m[32m    # Fetch the candidate from the database[m
-[32m+[m[32m    candidate_df = get_candidate_by_id(db, candidate_id)[m
-[32m+[m
-[32m+[m[32m    if candidate_df.empty:[m
-[32m+[m[32m        raise HTTPException(status_code=404, detail="Candidate not found")[m
-[32m+[m
-[32m+[m[32m    # Classify the candidate[m
-[32m+[m[32m    result_df = Classify.classify_resume(candidate_df)[m
-[32m+[m
-[32m+[m[32m    result_json = result_df[['id', 'candidate_name', 'classification']].to_dict(orient='records')[m
-[32m+[m
-[32m+[m[32m    # Format the result string[m
-[32m+[m[32m    formatted_result = {[m
-[32m+[m[32m        "id": result_json[0]['id'] if result_json else "N/A",[m
-[32m+[m[32m        "candidate_name": result_json[0]['candidate_name'] if result_json else "N/A",[m
-[32m+[m[32m        "classification": result_json[0]['classification'] if result_json else "N/A"[m
-[32m+[m[32m    }[m
-[32m+[m
-[32m+[m[32m    # print(f"Classification Result:\n{formatted_result}")[m
-[32m+[m
-[32m+[m[32m    classification_done_event.set()[m
-[32m+[m
-[32m+[m[32m    return {"message": "Classification completed", "result": formatted_result}[m
-[32m+[m
-[32m+[m
-[32m+[m[32m@router.get("/shutdown")[m
-[32m+[m[32mdef shutdown_endpoint():[m
-[32m+[m[32m    # Set the shutdown event[m
-[32m+[m[32m    shutdown_event.set()[m
-[32m+[m[32m    return {"message": "Server is shutting down..."}[m
-[32m+[m
-[32m+[m
-[32m+[m[32m@app.on_event("startup")[m
-[32m+[m[32masync def startup():[m
-[32m+[m[32m    print("Server is starting...")[m
-[32m+[m
-[32m+[m
-[32m+[m[32m@app.on_event("shutdown")[m
-[32m+[m[32masync def on_shutdown():[m
-[32m+[m[32m    print("Shutting down gracefully...")[m
-[32m+[m[32m    # Perform any cleanup tasks here if needed[m
-[32m+[m
-[32m+[m[32mapp.include_router(router)[m
-[1mdiff --git a/Controller/classifier_controller.py b/Controller/classifier_controller.py[m
-[1mdeleted file mode 100644[m
-[1mindex 725646a..0000000[m
-[1m--- a/Controller/classifier_controller.py[m
-[1m+++ /dev/null[m
-[36m@@ -1,57 +0,0 @@[m
-[31m-from Services.api_service import ApiService[m
-[31m-from fastapi import APIRouter, FastAPI[m
-[31m-from Logging.logger import custom_logger[m
-[31m-import asyncio[m
-[31m-[m
-[31m-app = FastAPI()[m
-[31m-router = APIRouter()[m
-[31m-custom_logger = custom_logger.get_instance("custom_logfile.log", max_file_size=500000, backup_count=3)[m
-[31m-[m
-[31m-# Event to signal when classification is done[m
-[31m-classification_done_event = asyncio.Event()[m
-[31m-classification_done_event.set()  # Initially set to True[m
-[31m-[m
-[31m-# Global variable to manage server shutdown[m
-[31m-shutdown_event = asyncio.Event()[m
-[31m-api = ApiService()[m
-[31m-[m
-[31m-[m
-[31m-@router.get("/classify")[m
-[31m-def classify_endpoint():[m
-[31m-    classification_done_event.clear()  # Clear the event at the start of classification[m
-[31m-[m
-[31m-    api.classify_all()[m
-[31m-[m
-[31m-    # Signal that classification is done[m
-[31m-    classification_done_event.set()[m
-[31m-[m
-[31m-    return {"message": "Job done"}[m
-[31m-[m
-[31m-[m
-[31m-@router.get("/classify_candidate/{candidate_id}")[m
-[31m-def classify_candidate(candidate_id: int):[m
-[31m-    classification_done_event.clear()[m
-[31m-    formatted_result = api.classify_by_id(candidate_id)[m
-[31m-    classification_done_event.set()[m
-[31m-[m
-[31m-    return {"message": "Classification completed", "result": formatted_result}[m
-[31m-[m
-[31m-[m
-[31m-@router.get("/shutdown")[m
-[31m-def shutdown_endpoint():[m
-[31m-    # Set the shutdown event[m
-[31m-    shutdown_event.set()[m
-[31m-    return {"message": "Server is shutting down..."}[m
-[31m-[m
-[31m-[m
-[31m-@app.on_event("startup")[m
-[31m-async def startup():[m
-[31m-    print("Server is starting...")[m
-[31m-[m
-[31m-[m
-[31m-@app.on_event("shutdown")[m
-[31m-async def on_shutdown():[m
-[31m-    print("Shutting down gracefully...")[m
-[31m-    # Perform any cleanup tasks here if needed[m
-[31m-[m
-[31m-app.include_router(router)[m
-[1mdiff --git a/Logging/file/path/logs/custom_logfile.log b/Logging/file/path/logs/custom_logfile.log[m
-[1mnew file mode 100644[m
-[1mindex 0000000..e69de29[m
-[1mdiff --git a/Logging/logger.py b/Logging/logger.py[m
-[1mindex bce871d..0488aff 100644[m
-[1m--- a/Logging/logger.py[m
-[1m+++ b/Logging/logger.py[m
-[36m@@ -1,89 +1,89 @@[m
-[31m-import logging[m
-[31m-from logging.handlers import RotatingFileHandler[m
-[31m-from Constants.constants import LOG_FILE_PATH[m
-[31m-import os[m
-[31m-import wrapt[m
-[31m-[m
-[31m-[m
-[31m-class CustomLogger:[m
-[31m-    _instance = None[m
-[31m-[m
-[31m-    LOG_LEVELS = ["INFO"][m
-[31m-[m
-[31m-    @staticmethod[m
-[31m-    def get_instance(log_filename="logfile.log", max_file_size=100000, backup_count=1):[m
-[31m-        if not CustomLogger._instance:[m
-[31m-            CustomLogger._instance = CustomLogger(log_filename, max_file_size, backup_count)[m
-[31m-        return CustomLogger._instance[m
-[31m-[m
-[31m-    def __init__(self, log_filename="logfile.log", max_file_size=100000, backup_count=1):[m
-[31m-        if CustomLogger._instance:[m
-[31m-            raise Exception("This class is designed as a Singleton; obtain its instance using get_instance().")[m
-[31m-        else:[m
-[31m-            CustomLogger._instance = self[m
-[31m-[m
-[31m-        self.log_filename = log_filename[m
-[31m-        self.max_file_size = max_file_size[m
-[31m-        self.backup_count = backup_count[m
-[31m-[m
-[31m-        self.setup_logger()[m
-[31m-[m
-[31m-    def setup_logger(self):[m
-[31m-        logs_folder = "logs"[m
-[31m-        log_file_path = os.path.join(LOG_FILE_PATH, logs_folder, self.log_filename)[m
-[31m-        os.makedirs(os.path.join(LOG_FILE_PATH, logs_folder), exist_ok=True)[m
-[31m-[m
-[31m-        handler = RotatingFileHandler(log_file_path, maxBytes=self.max_file_size, backupCount=self.backup_count)[m
-[31m-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')[m
-[31m-        handler.setFormatter(formatter)[m
-[31m-[m
-[31m-        self.logger = logging.getLogger("CustomLogger")[m
-[31m-        self.logger.setLevel(logging.INFO)[m
-[31m-        self.logger.addHandler(handler)[m
-[31m-[m
-[31m-    def log_aspect(self, log_level, message):[m
-[31m-        getattr(self.logger, log_level.lower())(message)[m
-[31m-[m
-[31m-    def log_info(self, message):[m
-[31m-        self.log_aspect("INFO", message)[m
-[31m-[m
-[31m-    @staticmethod[m
-[31m-    @wrapt.decorator[m
-[31m-    def log_around(wrapped, instance, args, kwargs):[m
-[31m-        log_level = kwargs.pop('log_level', 'INFO')[m
-[31m-        message = kwargs.pop('message', 'Performing operation')[m
-[31m-[m
-[31m-        class_name = instance.__class__.__name__ if instance else 'unknown_class'[m
-[31m-[m
-[31m-        if instance:[m
-[31m-            class_name = instance.__class__.__name__[m
-[31m-        elif hasattr(wrapped, '__self__') and wrapped.__self__:[m
-[31m-            class_name = wrapped.__self__.__class__.__name__[m
-[31m-        else:[m
-[31m-            class_name = wrapped.__module__[m
-[31m-[m
-[31m-        method_name = wrapped.__name__[m
-[31m-[m
-[31m-        entry_message = f"Entering method '{class_name}.{method_name}  with parameters {kwargs}'"[m
-[31m-        CustomLogger.get_instance().log_aspect(log_level.upper(), entry_message)[m
-[31m-[m
-[31m-        try:[m
-[31m-            result = wrapped(*args, **kwargs)[m
-[31m-            exit_message = f"Exiting method '{class_name}.{method_name} with parameters {kwargs}'"[m
-[31m-            CustomLogger.get_instance().log_aspect(log_level.upper(), exit_message)[m
-[31m-        except Exception as e:[m
-[31m-            error_message = f"Error in method '{class_name}.{method_name}': {str(e)}"[m
-[31m-            CustomLogger.get_instance().log_aspect('ERROR', error_message)[m
-[31m-            raise[m
-[31m-        return result[m
-[31m-[m
-[31m-[m
-[31m-custom_logger = CustomLogger.get_instance("custom_logfile.log", max_file_size=500000, backup_count=3)[m
-[31m-[m
-[31m-[m
-[31m-def apply_log_around(cls):[m
-[31m-    for attr_name, attr_value in list(cls.__dict__.items()):[m
-[31m-        if callable(attr_value):[m
-[31m-            setattr(cls, attr_name, custom_logger.log_around(attr_value))[m
-[31m-    return cls[m
-[31m-[m
-[32m+[m[32mimport logging[m[41m[m
-[32m+[m[32mfrom logging.handlers import RotatingFileHandler[m[41m[m
-[32m+[m[32mfrom Constants.constants import LOG_FILE_PATH[m[41m[m
-[32m+[m[32mimport os[m[41m[m
-[32m+[m[32mimport wrapt[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass CustomLogger:[m[41m[m
-[32m+[m[32m    _instance = None[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    LOG_LEVELS = ["INFO"][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    @staticmethod[m[41m[m
-[32m+[m[32m    def get_instance(log_filename="logfile.log", max_file_size=100000, backup_count=1):[m[41m[m
-[32m+[m[32m        if not CustomLogger._instance:[m[41m[m
-[32m+[m[32m            CustomLogger._instance = CustomLogger(log_filename, max_file_size, backup_count)[m[41m[m
-[32m+[m[32m        return CustomLogger._instance[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, log_filename="logfile.log", max_file_size=100000, backup_count=1):[m[41m[m
-[32m+[m[32m        if CustomLogger._instance:[m[41m[m
-[32m+[m[32m            raise Exception("This class is designed as a Singleton; obtain its instance using get_instance().")[m[41m[m
-[32m+[m[32m        else:[m[41m[m
-[32m+[m[32m            CustomLogger._instance = self[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        self.log_filename = log_filename[m[41m[m
-[32m+[m[32m        self.max_file_size = max_file_size[m[41m[m
-[32m+[m[32m        self.backup_count = backup_count[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        self.setup_logger()[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def setup_logger(self):[m[41m[m
-[32m+[m[32m        logs_folder = "logs"[m[41m[m
-[32m+[m[32m        log_file_path = os.path.join(LOG_FILE_PATH, logs_folder, self.log_filename)[m[41m[m
-[32m+[m[32m        os.makedirs(os.path.join(LOG_FILE_PATH, logs_folder), exist_ok=True)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        handler = RotatingFileHandler(log_file_path, maxBytes=self.max_file_size, backupCount=self.backup_count)[m[41m[m
-[32m+[m[32m        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')[m[41m[m
-[32m+[m[32m        handler.setFormatter(formatter)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        self.logger = logging.getLogger("CustomLogger")[m[41m[m
-[32m+[m[32m        self.logger.setLevel(logging.INFO)[m[41m[m
-[32m+[m[32m        self.logger.addHandler(handler)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def log_aspect(self, log_level, message):[m[41m[m
-[32m+[m[32m        getattr(self.logger, log_level.lower())(message)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def log_info(self, message):[m[41m[m
-[32m+[m[32m        self.log_aspect("INFO", message)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    @staticmethod[m[41m[m
-[32m+[m[32m    @wrapt.decorator[m[41m[m
-[32m+[m[32m    def log_around(wrapped, instance, args, kwargs):[m[41m[m
-[32m+[m[32m        log_level = kwargs.pop('log_level', 'INFO')[m[41m[m
-[32m+[m[32m        message = kwargs.pop('message', 'Performing operation')[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        class_name = instance.__class__.__name__ if instance else 'unknown_class'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if instance:[m[41m[m
-[32m+[m[32m            class_name = instance.__class__.__name__[m[41m[m
-[32m+[m[32m        elif hasattr(wrapped, '__self__') and wrapped.__self__:[m[41m[m
-[32m+[m[32m            class_name = wrapped.__self__.__class__.__name__[m[41m[m
-[32m+[m[32m        else:[m[41m[m
-[32m+[m[32m            class_name = wrapped.__module__[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        method_name = wrapped.__name__[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        entry_message = f"Entering method '{class_name}.{method_name}  with parameters {kwargs}'"[m[41m[m
-[32m+[m[32m        CustomLogger.get_instance().log_aspect(log_level.upper(), entry_message)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        try:[m[41m[m
-[32m+[m[32m            result = wrapped(*args, **kwargs)[m[41m[m
-[32m+[m[32m            exit_message = f"Exiting method '{class_name}.{method_name} with parameters {kwargs}'"[m[41m[m
-[32m+[m[32m            CustomLogger.get_instance().log_aspect(log_level.upper(), exit_message)[m[41m[m
-[32m+[m[32m        except Exception as e:[m[41m[m
-[32m+[m[32m            error_message = f"Error in method '{class_name}.{method_name}': {str(e)}"[m[41m[m
-[32m+[m[32m            CustomLogger.get_instance().log_aspect('ERROR', error_message)[m[41m[m
-[32m+[m[32m            raise[m[41m[m
-[32m+[m[32m        return result[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mcustom_logger = CustomLogger.get_instance("custom_logfile.log", max_file_size=500000, backup_count=3)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mdef apply_log_around(cls):[m[41m[m
-[32m+[m[32m    for attr_name, attr_value in list(cls.__dict__.items()):[m[41m[m
-[32m+[m[32m        if callable(attr_value):[m[41m[m
-[32m+[m[32m            setattr(cls, attr_name, custom_logger.log_around(attr_value))[m[41m[m
-[32m+[m[32m    return cls[m[41m[m
-[32m+[m[41m[m
-[1mdiff --git a/Logging/logs/custom_logfile.log b/Logging/logs/custom_logfile.log[m
-[1mdeleted file mode 100644[m
-[1mindex 36c20b8..0000000[m
-[1m--- a/Logging/logs/custom_logfile.log[m
-[1m+++ /dev/null[m
-[36m@@ -1,62 +0,0 @@[m
-[31m-2024-07-29 12:12:13,490 - INFO - Entering method 'Services.classification_service.classify_resume  with parameters {}'[m
-[31m-2024-07-29 12:12:13,491 - INFO - Entering method 'Utils.data_processor_utils.preprocess_data  with parameters {}'[m
-[31m-2024-07-29 12:12:13,492 - INFO - Entering method 'Utils.data_processor_utils.clean_json_string  with parameters {}'[m
-[31m-2024-07-29 12:12:13,493 - INFO - Exiting method 'Utils.data_processor_utils.clean_json_string with parameters {}'[m
-[31m-2024-07-29 12:12:13,493 - INFO - Entering method 'Utils.data_processor_utils.safe_literal_eval  with parameters {}'[m
-[31m-2024-07-29 12:12:13,494 - INFO - Exiting method 'Utils.data_processor_utils.safe_literal_eval with parameters {}'[m
-[31m-2024-07-29 12:12:13,501 - INFO - Exiting method 'Utils.data_processor_utils.preprocess_data with parameters {}'[m
-[31m-2024-07-29 12:12:13,501 - INFO - Entering method 'Utils.data_processor_utils.process_data  with parameters {}'[m
-[31m-2024-07-29 12:12:13,502 - INFO - Exiting method 'Utils.data_processor_utils.process_data with parameters {}'[m
-[31m-2024-07-29 12:12:13,502 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_0  with parameters {}'[m
-[31m-2024-07-29 12:12:13,504 - INFO - Entering method 'Utils.job_titles_processor_utils.parse_duration_to_months  with parameters {}'[m
-[31m-2024-07-29 12:12:13,507 - INFO - Exiting method 'Utils.job_titles_processor_utils.parse_duration_to_months with parameters {}'[m
-[31m-2024-07-29 12:12:13,508 - INFO - Entering method 'Utils.job_titles_processor_utils.parse_duration_to_months  with parameters {}'[m
-[31m-2024-07-29 12:12:13,509 - INFO - Exiting method 'Utils.job_titles_processor_utils.parse_duration_to_months with parameters {}'[m
-[31m-2024-07-29 12:12:13,510 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_0 with parameters {}'[m
-[31m-2024-07-29 12:12:14,001 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_1  with parameters {}'[m
-[31m-2024-07-29 12:12:14,002 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_1 with parameters {}'[m
-[31m-2024-07-29 12:12:14,002 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_2  with parameters {}'[m
-[31m-2024-07-29 12:12:14,002 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_2 with parameters {}'[m
-[31m-2024-07-29 12:12:14,019 - INFO - Entering method 'Services.filter_service.AIfilter  with parameters {}'[m
-[31m-2024-07-29 12:15:18,481 - INFO - Entering method 'Services.classification_service.classify_resume  with parameters {}'[m
-[31m-2024-07-29 12:15:18,482 - INFO - Entering method 'Utils.data_processor_utils.preprocess_data  with parameters {}'[m
-[31m-2024-07-29 12:15:18,483 - INFO - Entering method 'Utils.data_processor_utils.clean_json_string  with parameters {}'[m
-[31m-2024-07-29 12:15:18,484 - INFO - Exiting method 'Utils.data_processor_utils.clean_json_string with parameters {}'[m
-[31m-2024-07-29 12:15:18,484 - INFO - Entering method 'Utils.data_processor_utils.safe_literal_eval  with parameters {}'[m
-[31m-2024-07-29 12:15:18,484 - INFO - Exiting method 'Utils.data_processor_utils.safe_literal_eval with parameters {}'[m
-[31m-2024-07-29 12:15:18,486 - INFO - Exiting method 'Utils.data_processor_utils.preprocess_data with parameters {}'[m
-[31m-2024-07-29 12:15:18,486 - INFO - Entering method 'Utils.data_processor_utils.process_data  with parameters {}'[m
-[31m-2024-07-29 12:15:18,486 - INFO - Exiting method 'Utils.data_processor_utils.process_data with parameters {}'[m
-[31m-2024-07-29 12:15:18,486 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_0  with parameters {}'[m
-[31m-2024-07-29 12:15:18,489 - INFO - Entering method 'Utils.job_titles_processor_utils.parse_duration_to_months  with parameters {}'[m
-[31m-2024-07-29 12:15:18,491 - INFO - Exiting method 'Utils.job_titles_processor_utils.parse_duration_to_months with parameters {}'[m
-[31m-2024-07-29 12:15:18,493 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_0 with parameters {}'[m
-[31m-2024-07-29 12:15:19,048 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_1  with parameters {}'[m
-[31m-2024-07-29 12:15:19,048 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_1 with parameters {}'[m
-[31m-2024-07-29 12:15:19,049 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_2  with parameters {}'[m
-[31m-2024-07-29 12:15:19,049 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_2 with parameters {}'[m
-[31m-2024-07-29 12:15:19,076 - INFO - Entering method 'Services.filter_service.AIfilter  with parameters {}'[m
-[31m-2024-07-29 12:15:19,077 - INFO - Exiting method 'Services.filter_service.AIfilter with parameters {}'[m
-[31m-2024-07-29 12:15:19,078 - INFO - Exiting method 'Services.classification_service.classify_resume with parameters {}'[m
-[31m-2024-07-29 12:15:24,722 - INFO - Entering method 'Services.classification_service.classify_resume  with parameters {}'[m
-[31m-2024-07-29 12:15:24,722 - INFO - Entering method 'Utils.data_processor_utils.preprocess_data  with parameters {}'[m
-[31m-2024-07-29 12:15:24,724 - INFO - Entering method 'Utils.data_processor_utils.clean_json_string  with parameters {}'[m
-[31m-2024-07-29 12:15:24,725 - INFO - Exiting method 'Utils.data_processor_utils.clean_json_string with parameters {}'[m
-[31m-2024-07-29 12:15:24,725 - INFO - Entering method 'Utils.data_processor_utils.safe_literal_eval  with parameters {}'[m
-[31m-2024-07-29 12:15:24,725 - INFO - Exiting method 'Utils.data_processor_utils.safe_literal_eval with parameters {}'[m
-[31m-2024-07-29 12:15:24,726 - INFO - Exiting method 'Utils.data_processor_utils.preprocess_data with parameters {}'[m
-[31m-2024-07-29 12:15:24,727 - INFO - Entering method 'Utils.data_processor_utils.process_data  with parameters {}'[m
-[31m-2024-07-29 12:15:24,728 - INFO - Exiting method 'Utils.data_processor_utils.process_data with parameters {}'[m
-[31m-2024-07-29 12:15:24,729 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_0  with parameters {}'[m
-[31m-2024-07-29 12:15:24,731 - INFO - Entering method 'Utils.job_titles_processor_utils.parse_duration_to_months  with parameters {}'[m
-[31m-2024-07-29 12:15:24,735 - INFO - Exiting method 'Utils.job_titles_processor_utils.parse_duration_to_months with parameters {}'[m
-[31m-2024-07-29 12:15:24,736 - INFO - Entering method 'Utils.job_titles_processor_utils.parse_duration_to_months  with parameters {}'[m
-[31m-2024-07-29 12:15:24,737 - INFO - Exiting method 'Utils.job_titles_processor_utils.parse_duration_to_months with parameters {}'[m
-[31m-2024-07-29 12:15:24,738 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_0 with parameters {}'[m
-[31m-2024-07-29 12:15:24,759 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_1  with parameters {}'[m
-[31m-2024-07-29 12:15:24,760 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_1 with parameters {}'[m
-[31m-2024-07-29 12:15:24,760 - INFO - Entering method 'Utils.job_titles_processor_utils.process_job_titles_2  with parameters {}'[m
-[31m-2024-07-29 12:15:24,761 - INFO - Exiting method 'Utils.job_titles_processor_utils.process_job_titles_2 with parameters {}'[m
-[31m-2024-07-29 12:15:24,782 - INFO - Entering method 'Services.filter_service.AIfilter  with parameters {}'[m
-[31m-2024-07-29 12:15:26,660 - INFO - Exiting method 'Services.filter_service.AIfilter with parameters {}'[m
-[31m-2024-07-29 12:15:26,660 - INFO - Exiting method 'Services.classification_service.classify_resume with parameters {}'[m
-[1mdiff --git a/Services/api_service.py b/Services/api_service.py[m
-[1mdeleted file mode 100644[m
-[1mindex b50b6f2..0000000[m
-[1m--- a/Services/api_service.py[m
-[1m+++ /dev/null[m
-[36m@@ -1,48 +0,0 @@[m
-[31m-import pandas as pd[m
-[31m-from fastapi import Depends, HTTPException[m
-[31m-from sqlalchemy.orm import Session[m
-[31m-from Services.classification_service import Classify[m
-[31m-from Daos.database import query, update, get_db, get_candidate_by_id[m
-[31m-from Constants.constants import CHUNK_SIZE[m
-[31m-[m
-[31m-[m
-[31m-class ApiService:[m
-[31m-    def __init__(self, db: Session = Depends(get_db)):[m
-[31m-        self.db = db[m
-[31m-[m
-[31m-    def classify_all(self):[m
-[31m-        counter = 0[m
-[31m-[m
-[31m-        for candidates in query(self.db):[m
-[31m-            if not isinstance(candidates, pd.DataFrame):[m
-[31m-                raise ValueError("Expected a DataFrame from the query generator")[m
-[31m-[m
-[31m-            # Classify the resume[m
-[31m-            result = Classify.classify_resume(candidates)[m
-[31m-[m
-[31m-            update(self.db, result)[m
-[31m-[m
-[31m-            print(f"Successfully updated {counter}-{counter + CHUNK_SIZE}")[m
-[31m-            counter += CHUNK_SIZE[m
-[31m-[m
-[31m-    def classify_by_id(self, candidate_id):[m
-[31m-        # Fetch the candidate from the database[m
-[31m-        candidate_df = get_candidate_by_id(self.db, candidate_id)[m
-[31m-[m
-[31m-        if candidate_df.empty:[m
-[31m-            raise HTTPException(status_code=404, detail="Candidate not found")[m
-[31m-[m
-[31m-        # Classify the candidate[m
-[31m-        result_df = Classify.classify_resume(candidate_df)[m
-[31m-[m
-[31m-        result_json = result_df[['id', 'candidate_name', 'classification']].to_dict(orient='records')[m
-[31m-[m
-[31m-        # Format the result string[m
-[31m-        formatted_result = {[m
-[31m-            "id": result_json[0]['id'] if result_json else "N/A",[m
-[31m-            "candidate_name": result_json[0]['candidate_name'] if result_json else "N/A",[m
-[31m-            "classification": result_json[0]['classification'] if result_json else "N/A"[m
-[31m-        }[m
-[31m-[m
-[31m-        # print(f"Classification Result:\n{formatted_result}")[m
-[31m-        return formatted_result[m
-[1mdiff --git a/Services/classification_service.py b/Services/classification_service.py[m
-[1mindex 1961874..a936ca6 100644[m
-[1m--- a/Services/classification_service.py[m
-[1m+++ b/Services/classification_service.py[m
-[36m@@ -1,9 +1,10 @@[m
- import json[m
-[32m+[m[32mimport re[m
-[32m+[m[32mimport spacy[m
- import pandas as pd[m
- [m
- from Constants.constants import JOB_SKILLS_FILEPATH, JOB_TITLES_FILEPATH[m
- from Logging.logger import apply_log_around[m
-[31m-from Utils.job_title_extractor_utils import JobTitleExtractor[m
- from Utils.text_preprocessor_utils import TextPreprocessor[m
- from Utils.data_processor_utils import DataProcessor[m
- from Utils.job_titles_processor_utils import JobTitleProcessor[m
-[36m@@ -17,6 +18,32 @@[m [mjob_skills_filepath = JOB_SKILLS_FILEPATH[m
- with open(JOB_TITLES_FILEPATH, 'r') as f:[m
-     job_titles = json.load(f)[m
- [m
-[32m+[m[32mnlp = spacy.load('en_core_web_sm')[m
-[32m+[m
-[32m+[m
-[32m+[m[32mclass JobTitleExtractor:[m
-[32m+[m[32m    def __init__(self):[m
-[32m+[m[32m        self.nlp = nlp[m
-[32m+[m
-[32m+[m[32m    def extract_job_title(self, text):[m
-[32m+[m[32m        doc = self.nlp(text)[m
-[32m+[m[32m        for ent in doc.ents:[m
-[32m+[m[32m            if ent.label_ == "WORK_OF_ART":[m
-[32m+[m[32m                return ent.text[m
-[32m+[m
-[32m+[m[32m        regex_patterns = [[m
-[32m+[m[32m            r'\b(?:[a-z]+\s){0,2}(?:engineer|developer|lead|manager|administrator|consultant|technician|scientist'[m
-[32m+[m[32m            r'|analyst|coordinator|director|specialist|officer|architect|strategist|executive|advisor|designer'[m
-[32m+[m[32m            r'|programmer|supervisor|trainer|planner|controller|assistant|operator|agent|representative|clerk'[m
-[32m+[m[32m            r'|inspector|instructor|apps developer|attendant)\b',[m
-[32m+[m[32m        ][m
-[32m+[m
-[32m+[m[32m        for pattern in regex_patterns:[m
-[32m+[m[32m            match = re.search(pattern, text)[m
-[32m+[m[32m            if match:[m
-[32m+[m[32m                return match.group(0).title()[m
-[32m+[m[32m        return "Unknown"[m
-[32m+[m
- [m
- @apply_log_around[m
- class Classify:[m
-[1mdiff --git a/Utils/job_title_extractor_utils.py b/Utils/job_title_extractor_utils.py[m
-[1mdeleted file mode 100644[m
-[1mindex af832a9..0000000[m
-[1m--- a/Utils/job_title_extractor_utils.py[m
-[1m+++ /dev/null[m
-[36m@@ -1,28 +0,0 @@[m
-[31m-import re[m
-[31m-import spacy[m
-[31m-[m
-[31m-nlp = spacy.load('en_core_web_sm')[m
-[31m-[m
-[31m-[m
-[31m-class JobTitleExtractor:[m
-[31m-    def __init__(self):[m
-[31m-        self.nlp = nlp[m
-[31m-[m
-[31m-    def extract_job_title(self, text):[m
-[31m-        doc = self.nlp(text)[m
-[31m-        for ent in doc.ents:[m
-[31m-            if ent.label_ == "WORK_OF_ART":[m
-[31m-                return ent.text[m
-[31m-[m
-[31m-        regex_patterns = [[m
-[31m-            r'\b(?:[a-z]+\s){0,2}(?:engineer|developer|lead|manager|administrator|consultant|technician|scientist'[m
-[31m-            r'|analyst|coordinator|director|specialist|officer|architect|strategist|executive|advisor|designer'[m
-[31m-            r'|programmer|supervisor|trainer|planner|controller|assistant|operator|agent|representative|clerk'[m
-[31m-            r'|inspector|instructor|apps developer|attendant)\b',[m
-[31m-        ][m
-[31m-[m
-[31m-        for pattern in regex_patterns:[m
-[31m-            match = re.search(pattern, text)[m
-[31m-            if match:[m
-[31m-                return match.group(0).title()[m
-[31m-        return "Unknown"[m
-[1mdiff --git a/__pycache__/main.cpython-311.pyc b/__pycache__/main.cpython-311.pyc[m
-[1mindex e94b9f8..9fb9195 100644[m
-Binary files a/__pycache__/main.cpython-311.pyc and b/__pycache__/main.cpython-311.pyc differ
-[1mdiff --git a/keys.txt b/keys.txt[m
-[1mindex 3dfed74..8b13789 100644[m
-[1m--- a/keys.txt[m
-[1m+++ b/keys.txt[m
-[36m@@ -1,15 +1 @@[m
-[31m-AIzaSyBQuJHlZxqZYTDCrHeC-rerrPGatXRFWbI[m
-[31m-AIzaSyCd5jL3u3ZbVSW_9rhS2Hwo0cewNwm2Wus[m
-[31m-AIzaSyAlUI7p5_ixpYNkav78KtSt4EXTE0bztcs[m
-[31m-AIzaSyBL1ogDfJ1LlQTQfetsAPV9ZxyJffXOHD4[m
-[31m-AIzaSyAr_QcYNMb13k9S0hxfBHy3fSyomjHkLQQ[m
-[31m-AIzaSyAjb0nvKug4ui2Bl765SVC_FN8j71c3i7Q[m
-[31m-AIzaSyAHQQu-e6GAWoUOqtC3jDufkCvdzbR3tIU[m
-[31m-AIzaSyDAgGzg3-nfcAySkfFR-7RpxCet7vBxsqw[m
-[31m-AIzaSyDzCFKfTF6-4LQVZbscYoFSkGKD2pWoTJ8[m
-[31m-AIzaSyDNWzS-wUqOhHR3z4cjHFgrMDuRdgzE61k[m
-[31m-AIzaSyCOhyyKb6p7NmYfneMc0J4eH89SbgPPVrk[m
-[31m-AIzaSyC5kEzjEqAc1QsFWE91deqGhmnON0SoWvE[m
-[31m-AIzaSyBnQwBnREHYWwbK0fsElzntVrEd3A_RWYQ[m
-[31m-AIzaSyA_GA0IqRQ_mElGmwo1tPx2QK2XDz40ru0[m
-[31m-AIzaSyBTVkDLY46u2Fj_aJVz1ZMoeQ-9EGvN1a8[m
-\ No newline at end of file[m
-[32m+[m
-[1mdiff --git a/main.py b/main.py[m
-[1mindex 7df0d1b..71331cb 100644[m
-[1m--- a/main.py[m
-[1m+++ b/main.py[m
-[36m@@ -1,7 +1,7 @@[m
- import asyncio[m
- import sys[m
- import uvicorn[m
-[31m-from Controller.classifier_controller import shutdown_event[m
-[32m+[m[32mfrom Controller.api import app, shutdown_event[m
- [m
- [m
- async def shutdown_server(server):[m
-[36m@@ -14,7 +14,7 @@[m [masync def shutdown_server(server):[m
- [m
- [m
- async def main():[m
-[31m-    config = uvicorn.Config("main:app", host="192.168.1.15", port=8000, log_level="info")[m
-[32m+[m[32m    config = uvicorn.Config("main:app", host="127.0.0.1", port=8000, log_level="info")[m
-     server = uvicorn.Server(config)[m
- [m
-     # Start server and background tasks[m

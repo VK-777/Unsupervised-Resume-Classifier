@@ -26,6 +26,7 @@ class Filter:
         genai.configure(api_key=api_keys[api_key_index])
         model = genai.GenerativeModel(model_name)
         chat = model.start_chat()
+        #TODO add prompt to constant
 
         for index in range(len(df_subset)):
             if not df_subset.classification[index]:
